@@ -7,11 +7,13 @@ public class FroggerGame {
     private Screen screen;
     private ArrayList<Position> car = new ArrayList<>();
     private Position frog;
-    public FroggerGame(Screen screen)  {
+
+    public FroggerGame(Screen screen) {
         this.screen = screen;
         addCars();
 
     }
+
     public void addCars() {
         for (int i = 0; i < 6; i++) {
             car.add(new Position(2 + (i * 13), 9));
@@ -37,3 +39,4 @@ public class FroggerGame {
 
     }
 }
+
