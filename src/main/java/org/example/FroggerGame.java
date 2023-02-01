@@ -24,10 +24,10 @@ public class FroggerGame {
         }
         for (int i = 0; i < 6; i++) {
             car.add(new Position(2 + (i * 13), 7));
-            screen.putChar(car.get(i + 5).col, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i + 5).col + 1, car.get(i + 5).row, '\u2588', Screen.BLUE, Screen.GREEN);
-            screen.putChar(car.get(i + 5).col + 2, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i + 5).col + 3, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
+            screen.putChar(car.get(i + 4).col, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
+            screen.putChar(car.get(i + 4).col + 1, car.get(i + 5).row, '\u2588', Screen.BLUE, Screen.GREEN);
+            screen.putChar(car.get(i + 4).col + 2, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
+            screen.putChar(car.get(i + 4).col + 3, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
         }
         for (int i = 0; i < 6; i++) {
             car.add(new Position(2 + (i * 13), 5));
