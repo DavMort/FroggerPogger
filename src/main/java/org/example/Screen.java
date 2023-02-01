@@ -17,7 +17,7 @@ public class Screen {
     public static final int COLS = 80, ROWS = 24 ;
     static final char BLOCK = '\u2588';
     public static final TextColor
-            WHITE = new TextColor.RGB(255,255,255),
+            WHITE = new TextColor.RGB(250,255,255),
             BLACK = new TextColor.RGB(0,0,0),
             BLUE = new TextColor.RGB(0,0,255),
             YELLOW = new TextColor.RGB(255,255,0),
