@@ -1,11 +1,17 @@
 package org.example;
 
+import com.googlecode.lanterna.TextColor;
+
 import java.util.ArrayList;
 
 public class FroggerGame {
     private int ticks = 30;
     private Screen screen;
-    private ArrayList<Position> car = new ArrayList<>();
+    private ArrayList<Position> carLine1 = new ArrayList<>();
+    private ArrayList<Position> carLine2 = new ArrayList<>();
+    private ArrayList<Position> carLine3 = new ArrayList<>();
+    private ArrayList<Position> carLine4 = new ArrayList<>();
+    private ArrayList<Position> carLine5 = new ArrayList<>();
     private Position frog;
 
     public FroggerGame(Screen screen) {
@@ -16,27 +22,35 @@ public class FroggerGame {
 
     public void addCars() {
         for (int i = 0; i < 6; i++) {
-            car.add(new Position(2 + (i * 13), 9));
-            screen.putChar(car.get(i).col, car.get(i).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i).col + 1, car.get(i).row, '\u2588', Screen.BLUE, Screen.GREEN);
-            screen.putChar(car.get(i).col + 2, car.get(i).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i).col + 3, car.get(i).row, '\u2588', Screen.GREEN, Screen.GREEN);
+            carLine1.add(new Position(2 + (i * 13), 9));
+            drawCar(carLine1, Screen.YELLOW,true);
         }
         for (int i = 0; i < 6; i++) {
-            car.add(new Position(2 + (i * 13), 7));
-            screen.putChar(car.get(i + 4).col, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i + 4).col + 1, car.get(i + 5).row, '\u2588', Screen.BLUE, Screen.GREEN);
-            screen.putChar(car.get(i + 4).col + 2, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i + 4).col + 3, car.get(i + 5).row, '\u2588', Screen.GREEN, Screen.GREEN);
+            carLine2.add(new Position(4 + (i * 13), 7));
+            drawCar(carLine2, Screen.RED, false);
         }
         for (int i = 0; i < 6; i++) {
-            car.add(new Position(2 + (i * 13), 5));
-            screen.putChar(car.get(i).col, car.get(i).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i).col + 1, car.get(i).row, '\u2588', Screen.BLUE, Screen.GREEN);
-            screen.putChar(car.get(i).col + 2, car.get(i).row, '\u2588', Screen.GREEN, Screen.GREEN);
-            screen.putChar(car.get(i).col + 3, car.get(i).row, '\u2588', Screen.GREEN, Screen.GREEN);
+            carLine3.add(new Position(6 + (i * 13), 5));
+            drawCar(carLine3, Screen.GREEN, true);
         }
 
+    }
+    public void drawCar(ArrayList<Position> car, TextColor color, boolean driveLeft) {
+        if (driveLeft) {
+            for (Position c : car) {
+                screen.putChar(c.getCol(), c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() + 1, c.getRow(), '\u2588', Screen.BLUE, Screen.BLUE);
+                screen.putChar(c.getCol() + 2, c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() + 3, c.getRow(), '\u2588', color, color);
+            }
+        } else {
+            for (Position c : car) {
+                screen.putChar(c.getCol(), c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() - 1, c.getRow(), '\u2588', Screen.BLUE, Screen.BLUE);
+                screen.putChar(c.getCol() - 2, c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() - 3, c.getRow(), '\u2588', color, color);
+            }
+        }
     }
 }
 
