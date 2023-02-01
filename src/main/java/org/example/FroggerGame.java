@@ -7,4 +7,3 @@ public class FroggerGame {
         this.screen = screen;
 
     }
-}
