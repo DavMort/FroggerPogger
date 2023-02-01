@@ -7,6 +7,9 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 
+import static org.example.Main.froggerGame;
+import static org.example.Main.screen;
+
 /** A Screen wraps a Lanterna default terminal
  * in a simplifying façade
  * Main purpose is to add getChar that remembers
@@ -134,4 +137,14 @@ public class Screen {
             putChar(col, ROWS-1, BLOCK);
         }
     }
+
+
+    private static void singleKey() throws InterruptedException {
+        KeyStroke keyStroke;
+        while (true) {
+            keyStroke = screen.getKeyStroke();
+            froggerGame.handleKey.()
+                     (keyStroke);
+            Thread.sleep(5);
+        }
 }
