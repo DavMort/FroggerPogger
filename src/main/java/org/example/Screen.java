@@ -143,7 +143,7 @@ public class Screen {
         KeyStroke keyStroke;
         while (true) {
             keyStroke = screen.getKeyStroke();
-            froggerGame.handleKey.()
+            froggerGame.
                      (keyStroke);
             Thread.sleep(5);
         }
