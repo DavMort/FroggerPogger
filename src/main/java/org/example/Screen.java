@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class Screen {
     public static final int COLS = 80, ROWS = 24 ;
-    static final char BLOCK = 'Ö';
+    static final char BLOCK = '\u2588';
     public static final TextColor
             WHITE = new TextColor.RGB(255,255,255),
             BLACK = new TextColor.RGB(0,0,0),

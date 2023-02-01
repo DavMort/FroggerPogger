@@ -6,6 +6,5 @@ public class FroggerGame {
     public FroggerGame(Screen screen)  {
         this.screen = screen;
 
-        }
     }
 }
