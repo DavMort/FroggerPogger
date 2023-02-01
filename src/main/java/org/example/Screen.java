@@ -124,6 +124,11 @@ public class Screen {
             putChar(0, row, BLOCK);
             putChar(COLS-1, row, BLOCK);
         }
+        for (int line = 1; line < COLS; line++) {
+            if ((line < 15 || line > 30) && (line < 50 || line > 65)) {
+                putChar(line, 11, BLOCK);
+            }
+        }
         for (int col = 0; col <COLS; col++) {
             putChar(col, 0, BLOCK);
             putChar(col, ROWS-1, BLOCK);
