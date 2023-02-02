@@ -19,14 +19,73 @@ public class FroggerGame {
     private ArrayList<Position> carLine7 = new ArrayList<>();
     private ArrayList<Position> carLine8 = new ArrayList<>();
 
-    private Position frogPos = new Position(15,1);
-    private List<Position> frog;
+    private Position frog = new Position(15,1,false);
 
     public FroggerGame(Screen screen) {
         this.screen = screen;
+        addFrog();
         addCars();
-
     }
+
+    //Ulfs Snake Controls
+
+    public boolean handleKey (KeyStroke keyStroke){
+            String result = "";
+            if (keyStroke == null) return false;
+
+            KeyType kt = keyStroke.getKeyType();
+            switch (kt) {
+                case ArrowDown, ArrowUp, ArrowRight, ArrowLeft:
+                    result = tryMove(kt);
+                    break;
+                default:
+                    //ignore all other key!!
+                    return false;
+            }
+            if (result.equals("Continue")) {
+                return true;
+            }
+
+        /* else {
+            screen.putString(10,15,result);
+            screen.putString(10,17, "End of game");
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                // ignore
+            }
+            System.exit(0);
+            return false;
+
+         */
+        return false;
+    }
+
+    private String tryMove(KeyType kt)  {
+        int row = frog.getRow();
+        int col = frog.getCol();
+        switch(kt) {
+            case ArrowUp:
+                row--;
+                break;
+            case ArrowDown:
+                row++;
+                break;
+            case ArrowLeft:
+                col--;
+                break;
+            case ArrowRight:
+                col++;
+                break;
+            default:
+                //ignore illegal keystrokes
+                return "Continue";
+        }
+        char next = screen.getChar(col,row);
+
+        return "Continue";
+    }
+
 
     public ArrayList<Position> getCarLine1() {
         return carLine1;
@@ -110,7 +169,7 @@ public class FroggerGame {
             drawCar(carLine4, Screen.RED);
         }
         for (int i = 0; i < 6; i++) {
-            carLine5.add(new Position(6 + (i * 13), 13,true));
+            carLine5.add(new Position(6 + (i * 13), 13, true));
             drawCar(carLine5, Screen.WHITE);
         }
         for (int i = 0; i < 6; i++) {
@@ -127,73 +186,35 @@ public class FroggerGame {
         }
 
     }
+
     public void drawCar(ArrayList<Position> car, TextColor color) {
-            for (Position c : car) {
-                if (c.isDriveLeft()) {
-                    screen.putChar(c.getCol(), c.getRow(), '\u2588', color, color);
-                    screen.putChar(c.getCol() + 1, c.getRow(), '\u2588', Screen.BLUE, Screen.BLUE);
-                    screen.putChar(c.getCol() + 2, c.getRow(), '\u2588', color, color);
-                    screen.putChar(c.getCol() + 3, c.getRow(), '\u2588', color, color);
-                } else {
-                    screen.putChar(c.getCol(), c.getRow(), '\u2588', color, color);
-                    screen.putChar(c.getCol() - 1, c.getRow(), '\u2588', Screen.BLUE, Screen.BLUE);
-                    screen.putChar(c.getCol() - 2, c.getRow(), '\u2588', color, color);
-                    screen.putChar(c.getCol() - 3, c.getRow(), '\u2588', color, color);
+        for (Position c : car) {
+            if (c.isDriveLeft()) {
+                screen.putChar(c.getCol(), c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() + 1, c.getRow(), '\u2588', Screen.BLUE, Screen.BLUE);
+                screen.putChar(c.getCol() + 2, c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() + 3, c.getRow(), '\u2588', color, color);
+            } else {
+                screen.putChar(c.getCol(), c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() - 1, c.getRow(), '\u2588', Screen.BLUE, Screen.BLUE);
+                screen.putChar(c.getCol() - 2, c.getRow(), '\u2588', color, color);
+                screen.putChar(c.getCol() - 3, c.getRow(), '\u2588', color, color);
             }
         }
     }
+
+    public void addFrog() {
+        frog.setCol(15);
+        frog.setRow(1);
+    screen.putChar(frog.getCol(),frog.getRow(),'@',Screen.GREEN,Screen.BLACK);
+    }
+
     public void moveCars() {
         for (Position c : carLine3) {
 
         }
     }
-    public boolean handleKey (KeyStroke keyStroke) {
-        String result = "";
-        if (keyStroke == null) return false;
-
-        KeyType kt = keyStroke.getKeyType();
-        switch (kt) {
-            case ArrowDown,ArrowUp,ArrowRight,ArrowLeft:
-                result = tryMove(kt);
-                break;
-            default:
-                //ignore all other key!!
-                return false;
-        }
-    private String tryMove(KeyType kt)  {
-        int row = headPos.getRow();
-        int col = headPos.getCol();
-        switch(kt) {
-            case ArrowUp:
-                row--;
-                break;
-            case ArrowDown:
-                row++;
-                break;
-            case ArrowLeft:
-                col--;
-                break;
-            case ArrowRight:
-                col++;
-                break;
-            default:
-                //ignore illegal keystrokes
-                return "Continue";
-        }
-    public boolean handleKey (KeyStroke keyStroke) {
-        String result = "";
-        if (keyStroke == null) return false;
-
-        KeyType kt = keyStroke.getKeyType();
-        switch (kt) {
-            case ArrowDown,ArrowUp,ArrowRight,ArrowLeft:
-                result = tryMove(kt);
-                break;
-            default:
-                //ignore all other key!!
-                return false;
-        }
-}
+    }
 
 
 
