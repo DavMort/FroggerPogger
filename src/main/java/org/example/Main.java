@@ -1,5 +1,10 @@
 package org.example;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+
+import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
@@ -14,9 +19,9 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException {
         screen.border();
 
-
     }
+
 }

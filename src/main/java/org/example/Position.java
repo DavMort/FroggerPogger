@@ -4,25 +4,22 @@ public class Position {
     int col,row;
     boolean driveLeft;
 
-    public int getRow() {
-        return row;
-    }
 
     public Position(int col, int row) {
         this.row = row;
         this.col = col;
     }
-
     public Position(int col, int row, boolean driveLeft) {
         this.col = col;
         this.row = row;
         this.driveLeft = driveLeft;
     }
-
     public boolean isDriveLeft() {
         return driveLeft;
     }
-
+    public int getRow() {
+        return row;
+    }
     public void setRow(int row) {
         this.row = row;
     }

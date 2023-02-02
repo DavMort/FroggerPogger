@@ -1,22 +1,26 @@
 package org.example;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
 import java.awt.*;
+import java.io.IOException;
+import java.security.Key;
 import java.util.ArrayList;
 
 public class FroggerGame {
-    private int ticks = 30;
     private Screen screen;
     private ArrayList<Position> car = new ArrayList<>();
-
     private Position frog;
 
     public FroggerGame(Screen screen) throws InterruptedException {
         this.screen = screen;
         screen.border();
         addCar();
+        drawCar(car, Screen.YELLOW);
         addFrog();
+
         while (true) {
             Thread.sleep(300);
             moveCars();
@@ -29,8 +33,7 @@ public class FroggerGame {
         for (int i = 0; i < 8; i++) {
             driveLeft = i % 2 == 0;
             for (int j = 0; j < 6; j++) {
-                car.add(new Position(8 + (j * 12), row, driveLeft));
-                drawCar(car, Screen.YELLOW);
+                car.add(new Position(7 + (j * 12), row, driveLeft));
             }
             row += 2;
             if (row == 11) {
@@ -58,18 +61,15 @@ public class FroggerGame {
     public void moveCars() {
         for (Position c : car) {
             if (c.getCol() > 77) {
-                screen.putChar(c.getCol(), c.getRow(), ' ');
-                screen.putChar(c.getCol() - 1, c.getRow(), ' ');
-                screen.putChar(c.getCol() - 2, c.getRow(), ' ');
-                screen.putChar(c.getCol() - 3, c.getRow(), ' ');
-                screen.putChar(c.getCol() - 4, c.getRow(), ' ');
+                for (int i = 0; i < 5; i++) {
+                    screen.putChar(c.getCol() - i, c.getRow(), ' ');
+                }
                 c.setCol(5);
+
             } else if (c.getCol() < 2) {
-                screen.putChar(c.getCol(), c.getRow(), ' ');
-                screen.putChar(c.getCol() + 1, c.getRow(), ' ');
-                screen.putChar(c.getCol() + 2, c.getRow(), ' ');
-                screen.putChar(c.getCol() + 3, c.getRow(), ' ');
-                screen.putChar(c.getCol() + 4, c.getRow(), ' ');
+                for (int i = 0; i < 5; i++) {
+                    screen.putChar(c.getCol() + i, c.getRow(), ' ');
+                }
                 c.setCol(74);
 
             }
@@ -90,7 +90,7 @@ public class FroggerGame {
         drawFrog();
     }
     public void drawFrog() {
-        screen.putChar(frog.getCol(), frog.getRow(), '\u047E');
+        screen.putChar(frog.getCol(), frog.getRow(), '\u26C4', Screen.GREEN, Screen.BLACK);
     }
 }
 
