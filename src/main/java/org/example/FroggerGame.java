@@ -47,6 +47,8 @@ public class FroggerGame {
             }
             if (result.equals("Continue")) {
                 return true;
+            }else {
+
             }
 
         /* else {
@@ -89,7 +91,7 @@ public class FroggerGame {
             case 'X':
                 return "Walked into snake!";
             case BLOCK:
-                return "Walked into wall!";
+                return "Game Over";
         }
         moveFrog(col,row);
 
