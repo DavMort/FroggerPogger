@@ -7,6 +7,8 @@ import com.googlecode.lanterna.input.KeyType;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.Screen.BLOCK;
+
 public class FroggerGame {
     private int ticks = 30;
     private static Screen screen;
@@ -81,6 +83,13 @@ public class FroggerGame {
             default:
                 //ignore illegal keystrokes
                 return "Continue";
+        }
+        char next = screen.getChar(col,row);
+        switch (next) {
+            case 'X':
+                return "Walked into snake!";
+            case BLOCK:
+                return "Walked into wall!";
         }
         moveFrog(col,row);
 
