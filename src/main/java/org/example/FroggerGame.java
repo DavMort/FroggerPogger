@@ -95,7 +95,7 @@ public class FroggerGame {
         }
         for (int i = 0; i < 6; i++) {
             carLine2.add(new Position(4 + (i * 13), 5, false));
-            drawCar(carLine2, Screen.RED);
+            drawCar(carLine2, Screen.WHITE);
         }
         for (int i = 0; i < 6; i++) {
             carLine3.add(new Position(6 + (i * 13), 7, false));
@@ -115,7 +115,7 @@ public class FroggerGame {
         }
         for (int i = 0; i < 6; i++) {
             carLine7.add(new Position(6 + (i * 13), 17, true));
-            drawCar(carLine7, Screen.YELLOW);
+            drawCar(carLine7, Screen.RED);
         }
         for (int i = 0; i < 6; i++) {
             carLine8.add(new Position(6 + (i * 13), 19, false));
