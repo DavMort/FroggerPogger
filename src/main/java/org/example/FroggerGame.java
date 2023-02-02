@@ -1,8 +1,11 @@
 package org.example;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FroggerGame {
     private int ticks = 30;
@@ -16,7 +19,8 @@ public class FroggerGame {
     private ArrayList<Position> carLine7 = new ArrayList<>();
     private ArrayList<Position> carLine8 = new ArrayList<>();
 
-    private Position frog;
+    private Position frogPos = new Position(15,1);
+    private List<Position> frog;
 
     public FroggerGame(Screen screen) {
         this.screen = screen;
@@ -143,5 +147,53 @@ public class FroggerGame {
 
         }
     }
+    public boolean handleKey (KeyStroke keyStroke) {
+        String result = "";
+        if (keyStroke == null) return false;
+
+        KeyType kt = keyStroke.getKeyType();
+        switch (kt) {
+            case ArrowDown,ArrowUp,ArrowRight,ArrowLeft:
+                result = tryMove(kt);
+                break;
+            default:
+                //ignore all other key!!
+                return false;
+        }
+    private String tryMove(KeyType kt)  {
+        int row = headPos.getRow();
+        int col = headPos.getCol();
+        switch(kt) {
+            case ArrowUp:
+                row--;
+                break;
+            case ArrowDown:
+                row++;
+                break;
+            case ArrowLeft:
+                col--;
+                break;
+            case ArrowRight:
+                col++;
+                break;
+            default:
+                //ignore illegal keystrokes
+                return "Continue";
+        }
+    public boolean handleKey (KeyStroke keyStroke) {
+        String result = "";
+        if (keyStroke == null) return false;
+
+        KeyType kt = keyStroke.getKeyType();
+        switch (kt) {
+            case ArrowDown,ArrowUp,ArrowRight,ArrowLeft:
+                result = tryMove(kt);
+                break;
+            default:
+                //ignore all other key!!
+                return false;
+        }
 }
+
+
 
