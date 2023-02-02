@@ -48,6 +48,13 @@ public class FroggerGame {
             if (result.equals("Continue")) {
                 return true;
             }else {
+                try {
+                    Thread.sleep(6000);
+                } catch (InterruptedException e) {
+                    // ignore
+                }
+                System.exit(0);
+                return false;
 
             }
 
@@ -63,7 +70,7 @@ public class FroggerGame {
             return false;
 
          */
-        return false;
+       // return false;
     }
 
     private static String tryMove(KeyType kt)  {
