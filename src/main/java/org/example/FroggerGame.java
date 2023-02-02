@@ -81,11 +81,15 @@ public class FroggerGame {
                 //ignore illegal keystrokes
                 return "Continue";
         }
-        char next = screen.getChar(col,row);
+        moveFrog(row,col);
 
         return "Continue";
     }
-
+    private void moveFrog(int col, int row){
+        //System.out.println("move" + col + " " + row);
+        frog = new Position(col,row);
+        screen.putChar(frog.getCol(),frog.getRow(), 'X', Screen.GREEN, Screen.BLACK);
+    }
 
     public ArrayList<Position> getCarLine1() {
         return carLine1;
