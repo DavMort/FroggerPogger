@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FroggerGame {
     private int ticks = 30;
-    private Screen screen;
+    private static Screen screen;
     private ArrayList<Position> carLine1 = new ArrayList<>();
     private ArrayList<Position> carLine2 = new ArrayList<>();
     private ArrayList<Position> carLine3 = new ArrayList<>();
@@ -19,7 +19,7 @@ public class FroggerGame {
     private ArrayList<Position> carLine7 = new ArrayList<>();
     private ArrayList<Position> carLine8 = new ArrayList<>();
 
-    private Position frog = new Position(15,1,false);
+    private static Position frog = new Position(15,1,false);
     private Position frogPos = new Position(15,1);
 
     public FroggerGame(Screen screen) {
@@ -30,7 +30,7 @@ public class FroggerGame {
 
     //Ulfs Snake Controls
 
-    public boolean handleKey (KeyStroke keyStroke){
+    public static boolean handleKey(KeyStroke keyStroke){
             String result = "";
             if (keyStroke == null) return false;
 
@@ -62,7 +62,7 @@ public class FroggerGame {
         return false;
     }
 
-    private String tryMove(KeyType kt)  {
+    private static String tryMove(KeyType kt)  {
         int row = frog.getRow();
         int col = frog.getCol();
         switch(kt) {
@@ -82,14 +82,15 @@ public class FroggerGame {
                 //ignore illegal keystrokes
                 return "Continue";
         }
-        moveFrog(row,col);
+        moveFrog(col,row);
 
         return "Continue";
     }
-    private void moveFrog(int col, int row){
+    private static void moveFrog(int col, int row){
         //System.out.println("move" + col + " " + row);
-        frog = new Position(col,row);
-        screen.putChar(frog.getCol(),frog.getRow(), 'X', Screen.GREEN, Screen.BLACK);
+        frog.setCol(col);
+        frog.setRow(row);
+        screen.putChar(frog.getCol(),frog.getRow(), '@', Screen.GREEN, Screen.BLACK);
     }
 
     public ArrayList<Position> getCarLine1() {
