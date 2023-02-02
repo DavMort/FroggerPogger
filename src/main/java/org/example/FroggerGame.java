@@ -20,6 +20,7 @@ public class FroggerGame {
     private ArrayList<Position> carLine8 = new ArrayList<>();
 
     private Position frog = new Position(15,1,false);
+    private Position frogPos = new Position(15,1);
 
     public FroggerGame(Screen screen) {
         this.screen = screen;
